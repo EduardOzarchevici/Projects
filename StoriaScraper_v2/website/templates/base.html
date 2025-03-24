@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Base{% endblock %}</title>
+    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='general.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}"/>
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <div class="nav-bar-title">
+            Web Scaper
+        </div>
+        <div class="nav-bar-items">
+            {% if user.is_authenticated %}
+            <div class="nab-bar-item">
+                <button class="nav-bar-button"><a href="/">Home</a></button>
+            </div>
+            <div class="nav-bar-item">
+                <button class="nav-bar-button"><a href="/logout">Logout</a></button>
+            </div>
+            <div class="nav-bar-item">
+                <button class="nav-bar-button"><a href="/favorites">My Favorites</a></button>
+            </div>
+            {% else %}
+            <div class="nav-bar-item">
+                <button class="nav-bar-button"><a href="/login">Login</a></button>
+            </div>
+            <div class="nav-bar-item">
+                <button class="nav-bar-button"><a href="/sign-in">Sing In</a></button>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+                <div role="alert" class="alert alert-red">
+                    {{ message }}
+                    <button type="button" class="close-btn">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div role="alert" class="alert alert-green">
+                    {{ message }}
+                    <button type="button" class="close-btn">
+                        <span aria-hidden="true" >&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    {% block content %} {%endblock%}
+
+     <script type="text/javascript"
+        src="{{ url_for('static', filename='index.js') }}">
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".close-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            this.parentElement.style.display = "none";
+        });
+    });
+});
+</script>
+
+</body>
+</html>

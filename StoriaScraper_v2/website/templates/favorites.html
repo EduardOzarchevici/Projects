@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Favorites{% endblock %}
+{% block content %}
+<main>
+<table>
+    <tr>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Nr of rooms</th>
+        <th>Surface</th>
+        <th>Floor</th>
+        <th>Owner</th>
+        <th>Price</th>
+        <th>Delete</th>
+    </tr>
+    {% for fav in user.favorites %}
+        <tr>
+            <td>{{ fav.announcement.description }}</td>
+            <td>{{ fav.announcement.location }}</td>
+            <td>{{ fav.announcement.nb_rooms }}</td>
+            <td>{{ fav.announcement.surface }}</td>
+            <td>{{ fav.announcement.floor }}</td>
+            <td>{{ fav.announcement.owner }}</td>
+            <td>{{ fav.announcement.price }}</td>
+            <td class="close-btn"><button type="button" onClick="deleteFavorite({{ fav.id }})">&times;</button></td>
+        </tr>
+    {% endfor %}
+</table>
+</main>
+{% endblock %}

@@ -1,0 +1,44 @@
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  thead, tbody {
+    display: block;
+  }
+  table tr:first-of-type {
+      position: sticky;
+      top: 0;
+      background-color: rgb(195, 148, 238);
+      color: white;
+      font-familiy: Arial;
+      font-size: 20px;
+
+  }
+
+  thead tr {
+    display: flex;
+
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    flex: 1;
+  }
+
+  tbody {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .close-btn {
+  align-self: center;
+  }
+
+  tr:not(:first-child) {
+    background-color: white;
+  }
+
+  /* Style the table as needed */

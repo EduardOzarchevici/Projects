@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock%}
+{% block content %}
+
+    <h1>Apartaments for rent in Iasi</h1>
+
+    <main>
+    <table>
+
+            <tr>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Nr of rooms</th>
+                <th>Surfce</th>
+                <th>Floor</th>
+                <th>Owner</th>
+                <th>Price</th>
+                <th>Add to favorites</th>
+             </tr>
+
+
+            {% for announcement in announcements %}
+            <tr>
+                <td>{{ announcement.description }}</td>
+                <td>{{ announcement.location }}</td>
+                <td>{{ announcement.nb_rooms }}</td>
+                <td>{{ announcement.surface }}</td>
+                <td>{{ announcement.floor }}</td>
+                <td>{{ announcement.owner }}</td>
+                <td>{{ announcement.price }}</td>
+                <td><button type="button" onClick="saveFavorite({{ announcement.id }})">&#x2713;</button></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    </main>
+{% endblock %}
